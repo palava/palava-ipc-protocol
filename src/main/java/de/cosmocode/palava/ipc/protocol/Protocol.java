@@ -29,7 +29,11 @@ import de.cosmocode.palava.ipc.IpcCommandExecutor;
  */
 public interface Protocol {
     
-    Object SUPPRESS_RESPONSE = new Object();
+    /**
+     * A constant response object which will result in no response being sent
+     * to the caller when returned by {@link #process(Object, DetachedConnection)}.
+     */
+    Object NO_RESPONSE = new Object();
 
     /**
      * Checks whether this protocol supports the specified request.
@@ -56,7 +60,7 @@ public interface Protocol {
      * 
      * @param request the incoming request
      * @param connection the current connection
-     * @return the produced response, in case {@link Protocol#SUPPRESS_RESPONSE} is returned
+     * @return the produced response, in case {@link Protocol#NO_RESPONSE} is returned
      *         the invoker must not send a response to the caller
      */
     Object process(Object request, DetachedConnection connection);
