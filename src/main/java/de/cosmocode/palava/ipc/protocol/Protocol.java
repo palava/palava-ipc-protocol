@@ -62,7 +62,8 @@ public interface Protocol {
      * @param connection the current connection
      * @return the produced response, in case {@link Protocol#NO_RESPONSE} is returned
      *         the invoker must not send a response to the caller
+     * @throws ProtocolException if processing failed        
      */
-    Object process(Object request, DetachedConnection connection);
+    Object process(Object request, DetachedConnection connection) throws ProtocolException;
     
 }

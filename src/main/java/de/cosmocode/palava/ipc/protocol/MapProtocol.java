@@ -39,7 +39,7 @@ public abstract class MapProtocol implements Protocol {
     public abstract boolean supports(Map<?, ?> request);
     
     @Override
-    public final Object process(Object request, DetachedConnection connection) {
+    public final Object process(Object request, DetachedConnection connection) throws ProtocolException {
         return process(Map.class.cast(request), connection);
     }
 
@@ -49,7 +49,8 @@ public abstract class MapProtocol implements Protocol {
      * @param request the incoming request
      * @param connection the current connection
      * @return the produced content
+     * @throws ProtocolException if processing failed
      */
-    public abstract Object process(Map<?, ?> request, DetachedConnection connection);
+    public abstract Object process(Map<?, ?> request, DetachedConnection connection) throws ProtocolException;
 
 }
