@@ -30,7 +30,7 @@ import de.cosmocode.palava.ipc.IpcCommandExecutor;
 public interface Protocol {
     
     /**
-     * A constant response object which will result in no response being sent
+     * A constant response object which indicates that no response should be sent
      * to the caller when returned by {@link #process(Object, DetachedConnection)}.
      */
     Object NO_RESPONSE = new Object();
@@ -49,7 +49,7 @@ public interface Protocol {
      * this method is called when more than one protocol is installed
      * because the invoker may not know which protocol was addressed.
      * 
-     * @param t the occured
+     * @param t the occured exception
      * @param request the incoming request, may be null when parsing failed
      * @return the error response for the caller
      */
