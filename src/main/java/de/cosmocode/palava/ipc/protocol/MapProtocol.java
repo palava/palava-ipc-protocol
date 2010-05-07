@@ -53,4 +53,21 @@ public abstract class MapProtocol implements Protocol {
      */
     public abstract Object process(Map<?, ?> request, DetachedConnection connection) throws ProtocolException;
 
+    @Override
+    public final Object onError(Throwable t, Object request) {
+        return onError(t, Map.class.cast(request));
+    }
+
+    /**
+     * Callback for the invoker which may be called when the request
+     * couldn't be read because of an exception. There is no garantuee
+     * this method is called when more than one protocol is installed
+     * because the invoker may not know which protocol was addressed.
+     * 
+     * @param t the occured exception
+     * @param request the incoming request, may be null when parsing failed
+     * @return the error response for the caller
+     */
+    public abstract Object onError(Throwable t, Map<?, ?> request);
+    
 }

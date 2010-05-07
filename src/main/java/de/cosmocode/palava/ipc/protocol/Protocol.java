@@ -32,8 +32,6 @@ public interface Protocol {
     /**
      * A constant response object which indicates that no response should be sent
      * to the caller when returned by {@link #process(Object, DetachedConnection)}.
-     * 
-     * TODO what about null instead?
      */
     Object NO_RESPONSE = new Object();
     
@@ -46,6 +44,17 @@ public interface Protocol {
     boolean supports(Object request);
     
     /**
+     * Processes the incoming request and returns the response.
+     * 
+     * @param request the incoming request
+     * @param connection the current connection
+     * @return the produced response, in case {@link Protocol#NO_RESPONSE} is returned
+     *         the invoker must not send a response to the caller
+     * @throws ProtocolException if processing failed        
+     */
+    Object process(Object request, DetachedConnection connection) throws ProtocolException;
+    
+    /**
      * Callback for the invoker which may be called when the request
      * couldn't be read because of an exception. There is no garantuee
      * this method is called when more than one protocol is installed
@@ -56,16 +65,5 @@ public interface Protocol {
      * @return the error response for the caller
      */
     Object onError(Throwable t, Object request);
-    
-    /**
-     * Processes the incoming request and returns the response.
-     * 
-     * @param request the incoming request
-     * @param connection the current connection
-     * @return the produced response, in case {@link Protocol#NO_RESPONSE} is returned
-     *         the invoker must not send a response to the caller
-     * @throws ProtocolException if processing failed        
-     */
-    Object process(Object request, DetachedConnection connection) throws ProtocolException;
     
 }
