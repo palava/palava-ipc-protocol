@@ -30,6 +30,7 @@ public interface DetachedConnection extends IpcConnection {
      * Attaches this connection to the specified session.
      * 
      * @param session the session which belongs to this connection
+     * @throws NullPointerException if session is null
      */
     void attachTo(IpcSession session);
     

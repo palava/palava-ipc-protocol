@@ -32,9 +32,11 @@ public interface Protocol {
     /**
      * A constant response object which indicates that no response should be sent
      * to the caller when returned by {@link #process(Object, DetachedConnection)}.
+     * 
+     * TODO what about null instead?
      */
     Object NO_RESPONSE = new Object();
-
+    
     /**
      * Checks whether this protocol supports the specified request.
      * 
