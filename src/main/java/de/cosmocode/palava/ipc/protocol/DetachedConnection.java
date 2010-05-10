@@ -34,4 +34,11 @@ public interface DetachedConnection extends IpcConnection {
      */
     void attachTo(IpcSession session);
     
+    /**
+     * {@inheritDoc}
+     * @throws IllegalStateException if this connection is not yet attached to a session
+     */
+    @Override
+    IpcSession getSession();
+    
 }
