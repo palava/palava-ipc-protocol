@@ -40,5 +40,13 @@ public interface DetachedConnection extends IpcConnection {
      */
     @Override
     IpcSession getSession();
+
+    /**
+     * Provides the id of this connection.
+     * 
+     * @since 1.0
+     * @return the connection id
+     */
+    String getConnectionId();
     
 }
