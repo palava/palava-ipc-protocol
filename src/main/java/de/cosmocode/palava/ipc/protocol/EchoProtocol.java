@@ -62,7 +62,7 @@ public final class EchoProtocol implements Protocol, Initializable, Disposable {
 
     @Override
     public Object onError(Throwable t, Object request) {
-        LOG.warn("Echoing " + request + " caused by", t);
+        LOG.warn("Echoing " + request + " caused exception", t);
         return request;
     }
     
