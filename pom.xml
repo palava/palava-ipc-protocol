@@ -8,9 +8,9 @@
   <groupId>de.cosmocode.palava</groupId>
   <artifactId>palava-ipc-protocol</artifactId>
   <name>Palava IPC Protocol</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <scm>
-  	<developerConnection>scm:svn:https://palava.svn.cosmocode.de/palava-ipc-protocol/trunk</developerConnection>
+  	<developerConnection>scm:svn:https://palava.svn.cosmocode.de/palava-ipc-protocol/tags/1.0.0</developerConnection>
   </scm>
   <dependencies>
   	<dependency>
