@@ -48,10 +48,15 @@ public abstract class AbstractDetachedConnection extends AbstractScopeContext im
     public void attachTo(IpcSession session) {
         this.currentSession = Preconditions.checkNotNull(session, "Session");
     }
+    
+    @Override
+    public boolean isAttached() {
+        return currentSession != null;
+    }
 
     @Override
     public IpcSession getSession() {
-        Preconditions.checkState(currentSession != null, "Not yet attached to a session");
+        Preconditions.checkState(isAttached(), "Not yet attached to a session");
         return currentSession;
     }
 

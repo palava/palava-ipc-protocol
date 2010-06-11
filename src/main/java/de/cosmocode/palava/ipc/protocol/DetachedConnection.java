@@ -35,6 +35,14 @@ public interface DetachedConnection extends IpcConnection {
     void attachTo(IpcSession session);
     
     /**
+     * Checks whether this connection is already attached to a session.
+     * 
+     * @since 1.1
+     * @return true if this connection is attached to a session, false otherwise
+     */
+    boolean isAttached();
+    
+    /**
      * {@inheritDoc}
      * @throws IllegalStateException if this connection is not yet attached to a session
      */
