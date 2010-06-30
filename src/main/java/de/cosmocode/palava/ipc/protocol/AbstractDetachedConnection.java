@@ -16,13 +16,13 @@
 
 package de.cosmocode.palava.ipc.protocol;
 
-import java.util.Map;
-
 import com.google.inject.internal.Maps;
 import com.google.inject.internal.Preconditions;
-
 import de.cosmocode.palava.ipc.IpcSession;
+import de.cosmocode.palava.ipc.IpcSessionNotAttachedException;
 import de.cosmocode.palava.scope.AbstractScopeContext;
+
+import java.util.Map;
 
 /**
  * Abstract implementation of the {@link DetachedConnection} interface.
@@ -56,7 +56,7 @@ public abstract class AbstractDetachedConnection extends AbstractScopeContext im
 
     @Override
     public IpcSession getSession() {
-        Preconditions.checkState(isAttached(), "Not yet attached to a session");
+        if (!isAttached()) throw new IpcSessionNotAttachedException();
         return currentSession;
     }
 
