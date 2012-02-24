@@ -20,7 +20,7 @@ import de.cosmocode.palava.ipc.IpcCommand;
 import de.cosmocode.palava.ipc.IpcCommandExecutor;
 
 /**
- * A protocol mediate between arritary objects and
+ * A protocol mediate between arbitrary objects and
  * {@link IpcCommand}s. It's in the responsibilities of a protocol
  * to read and translate incoming requests and push
  * execution instructions to the {@link IpcCommandExecutor}.
@@ -39,7 +39,7 @@ public interface Protocol {
      * Checks whether this protocol supports the specified request.
      * 
      * @param request the incoming request
-     * @return true if this protoc supports the request, false otherwise
+     * @return true if this protocol supports the request, false otherwise
      */
     boolean supports(Object request);
     
@@ -56,11 +56,11 @@ public interface Protocol {
     
     /**
      * Callback for the invoker which may be called when the request
-     * couldn't be read because of an exception. There is no garantuee
+     * couldn't be read because of an exception. There is no guarantee
      * this method is called when more than one protocol is installed
      * because the invoker may not know which protocol was addressed.
      * 
-     * @param t the occured exception
+     * @param t the occurred exception
      * @param request the incoming request, may be null when parsing failed
      * @return the error response for the caller
      */
