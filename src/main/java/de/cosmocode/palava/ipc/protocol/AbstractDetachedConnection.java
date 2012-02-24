@@ -16,14 +16,13 @@
 
 package de.cosmocode.palava.ipc.protocol;
 
-import java.util.Map;
-
-import com.google.inject.internal.Maps;
+import com.google.common.collect.MapMaker;
 import com.google.inject.internal.Preconditions;
-
 import de.cosmocode.palava.ipc.IpcSession;
 import de.cosmocode.palava.ipc.IpcSessionNotAttachedException;
 import de.cosmocode.palava.scope.AbstractScopeContext;
+
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Abstract implementation of the {@link DetachedConnection} interface.
@@ -33,14 +32,14 @@ import de.cosmocode.palava.scope.AbstractScopeContext;
  */
 public abstract class AbstractDetachedConnection extends AbstractScopeContext implements DetachedConnection {
 
-    private Map<Object, Object> context;
+    private ConcurrentMap<Object, Object> context;
     
     private IpcSession currentSession;
-    
+
     @Override
-    protected Map<Object, Object> context() {
+    protected ConcurrentMap<Object, Object> delegate() {
         if (context == null) {
-            context = Maps.newHashMap();
+            context = new MapMaker().makeMap();
         }
         return context;
     }
