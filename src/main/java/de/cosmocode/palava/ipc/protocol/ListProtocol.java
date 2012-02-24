@@ -27,7 +27,7 @@ public abstract class ListProtocol implements Protocol {
 
     @Override
     public final boolean supports(Object request) {
-        return request instanceof List<?> ? supports(List.class.cast(request)) : false;
+        return request instanceof List<?> && supports(List.class.cast(request));
     }
     
     /**

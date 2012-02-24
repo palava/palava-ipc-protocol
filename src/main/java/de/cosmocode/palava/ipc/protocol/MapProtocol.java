@@ -27,7 +27,7 @@ public abstract class MapProtocol implements Protocol {
 
     @Override
     public final boolean supports(Object request) {
-        return request instanceof Map<?, ?> ? supports(Map.class.cast(request)) : false;
+        return request instanceof Map<?, ?> && supports(Map.class.cast(request));
     }
 
     /**
