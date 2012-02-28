@@ -23,7 +23,7 @@ import java.util.Map;
  *
  * @author Willi Schoenborn
  */
-public abstract class MapProtocol implements Protocol {
+public abstract class MapProtocol<K, V> implements Protocol {
 
     @Override
     public final boolean supports(Object request) {
@@ -39,6 +39,7 @@ public abstract class MapProtocol implements Protocol {
     public abstract boolean supports(Map<?, ?> request);
     
     @Override
+    @SuppressWarnings("unchecked")
     public final Object process(Object request, DetachedConnection connection) throws ProtocolException {
         return process(Map.class.cast(request), connection);
     }
@@ -51,9 +52,10 @@ public abstract class MapProtocol implements Protocol {
      * @return the produced content
      * @throws ProtocolException if processing failed
      */
-    public abstract Object process(Map<?, ?> request, DetachedConnection connection) throws ProtocolException;
+    public abstract Object process(Map<K, V> request, DetachedConnection connection) throws ProtocolException;
 
     @Override
+    @SuppressWarnings("unchecked")
     public final Object onError(Throwable t, Object request) {
         return onError(t, Map.class.cast(request));
     }
@@ -68,6 +70,6 @@ public abstract class MapProtocol implements Protocol {
      * @param request the incoming request, may be null when parsing failed
      * @return the error response for the caller
      */
-    public abstract Object onError(Throwable t, Map<?, ?> request);
+    public abstract Object onError(Throwable t, Map<K, V> request);
     
 }

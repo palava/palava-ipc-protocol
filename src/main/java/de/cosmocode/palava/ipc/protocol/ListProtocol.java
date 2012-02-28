@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @author Willi Schoenborn
  */
-public abstract class ListProtocol implements Protocol {
+public abstract class ListProtocol<E> implements Protocol {
 
     @Override
     public final boolean supports(Object request) {
@@ -39,6 +39,7 @@ public abstract class ListProtocol implements Protocol {
     public abstract boolean supports(List<?> request);
     
     @Override
+    @SuppressWarnings("unchecked")
     public final Object process(Object request, DetachedConnection connection) throws ProtocolException {
         return process(List.class.cast(request), connection);
     }
@@ -51,9 +52,10 @@ public abstract class ListProtocol implements Protocol {
      * @return the produced content
      * @throws ProtocolException if processing failed
      */
-    public abstract Object process(List<?> request, DetachedConnection connection) throws ProtocolException;
+    public abstract Object process(List<E> request, DetachedConnection connection) throws ProtocolException;
 
     @Override
+    @SuppressWarnings("unchecked")
     public final Object onError(Throwable t, Object request) {
         return onError(t, List.class.cast(request));
     }
@@ -68,6 +70,6 @@ public abstract class ListProtocol implements Protocol {
      * @param request the incoming request, may be null when parsing failed
      * @return the error response for the caller
      */
-    public abstract Object onError(Throwable t, List<?> request);
+    public abstract Object onError(Throwable t, List<E> request);
     
 }
