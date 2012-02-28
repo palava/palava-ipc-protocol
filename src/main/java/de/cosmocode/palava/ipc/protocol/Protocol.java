@@ -28,12 +28,21 @@ import de.cosmocode.palava.ipc.IpcCommandExecutor;
  * @author Willi Schoenborn
  */
 public interface Protocol {
-    
+
     /**
      * A constant response object which indicates that no response should be sent
      * to the caller when returned by {@link #process(Object, DetachedConnection)}.
+     * <br /><br />
+     * This is now an enum, because an enum is truely unique
+     * (and IntelliJ Idea inspects object equality check between non-enums as wrong :-P).
+     *
+     * @author Oliver Lorenz
+     * @author Willi Schönborn (author of the original NO_RESPONSE object)
+     * @since 2.0
      */
-    Object NO_RESPONSE = new Object();
+    enum NoResponse {
+        INSTANCE
+    }
     
     /**
      * Checks whether this protocol supports the specified request.
@@ -48,7 +57,7 @@ public interface Protocol {
      * 
      * @param request the incoming request
      * @param connection the current connection
-     * @return the produced response, in case {@link Protocol#NO_RESPONSE} is returned
+     * @return the produced response, in case {@link NoResponse#INSTANCE} is returned
      *         the invoker must not send a response to the caller
      * @throws ProtocolException if processing failed        
      */
