@@ -21,7 +21,11 @@ import java.util.Map;
 /**
  * An abstract {@link Protocol} which requires {@link Map} requests.
  *
+ * @param <K> the type of mapped keys that this map protocol can process
+ * @param <V> the type of mapped values that this map protocol will receive on process
+ *
  * @author Willi Schoenborn
+ * @author Oliver Lorenz (added type parameters)
  */
 public abstract class MapProtocol<K, V> implements Protocol {
 
