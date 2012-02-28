@@ -24,6 +24,7 @@ import java.util.List;
  * @param <E> the type of each element of the list that this List protocol can process
  *
  * @author Willi Schoenborn
+ * @author Oliver Lorenz (added type parameters)
  */
 public abstract class ListProtocol<E> implements Protocol {
 
